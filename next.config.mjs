@@ -7,12 +7,16 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'randomuser.me',
+        pathname: '/api/portraits/**',
       },
     ],
+    // Fallback to direct loading to avoid optimizer issues on some hosts
+    unoptimized: true,
   },
 }
 
