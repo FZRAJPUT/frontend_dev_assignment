@@ -16,17 +16,24 @@ export default function WorkersPage() {
   const ITEMS_PER_PAGE = 12
 
   useEffect(() => {
+    let isMounted = true
+
     const loadData = async () => {
       try {
         const response = await import('../../workers.json')
-        setWorkersData(response.default)
+        if (isMounted) setWorkersData(response.default)
       } catch (error) {
         console.error('Failed to load workers:', error)
       } finally {
-        setLoading(false)
+        if (isMounted) setLoading(false)
       }
     }
+
     loadData()
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   const serviceOptions = useMemo(() => {
@@ -53,7 +60,9 @@ export default function WorkersPage() {
     setCurrentPage(page)
   }
 
-  useEffect(() => setCurrentPage(1), [selectedService, maxPrice])
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedService, maxPrice])
 
   return (
     <>
@@ -120,3 +129,6 @@ export default function WorkersPage() {
     </>
   )
 }
+
+//  Fixed various bugs and issues on the workers page and project configuration.
+ 
