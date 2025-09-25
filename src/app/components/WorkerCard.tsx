@@ -24,4 +24,6 @@ const WorkerCard = React.memo(({ worker }: { worker: WorkerType }) => (
     </div>
   ))
 
+WorkerCard.displayName = 'WorkerCard'
+
   export default WorkerCard
