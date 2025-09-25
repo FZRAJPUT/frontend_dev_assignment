@@ -1,11 +1,17 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import workersData from '../../../../workers.json' // existing JSON
+import { NextResponse } from 'next/server'
+import workersData from '../../../../workers.json'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    try {
-        res.status(200).json(workersData)
-    } catch (error) {
-        console.error('Failed to fetch workers:', error)
-        res.status(500).json({ message: 'Failed to fetch workers' })
-    }
+export async function GET() {
+  try {
+    return NextResponse.json(workersData, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=60'
+      }
+    })
+  } catch (error) {
+    console.error('Failed to fetch workers:', error)
+    return NextResponse.json({ message: 'Failed to fetch workers' }, { status: 500 })
+  }
 }
