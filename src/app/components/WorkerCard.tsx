@@ -11,6 +11,7 @@ const WorkerCard = React.memo(({ worker }: { worker: WorkerType }) => (
           fill
           className="object-cover"
           loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <div className="p-5 flex flex-col justify-between flex-grow">
