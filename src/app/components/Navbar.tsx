@@ -41,7 +41,7 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-black px-4 pb-4 space-y-2 font-medium">
+        <div className="md:hidden bg-white px-4 pb-4 space-y-2 font-medium">
           <Link
             href="/"
             className="block py-2 border-b border-gray-700 hover:text-indigo-400"
